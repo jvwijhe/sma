@@ -13,11 +13,15 @@ class Message extends Model
     protected $fillable = [
         'name',
         'slug', 
+       'contacts', 
         'message', 
         'password',
     ];
 
     protected $appends = ['signed_url'];
+    protected $casts = [
+        'contacts' => 'array'
+    ];
 
     public function user()
     {

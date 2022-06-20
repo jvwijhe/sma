@@ -27,6 +27,7 @@ class MessageCreateRequest extends FormRequest
             'name' => 'required',
             // 'slug' => 'required|unique:messages',
             'message' => 'required',
+            'contacts' => 'array',
             'password' => 'required',
         ];
     }

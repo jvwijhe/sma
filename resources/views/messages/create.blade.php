@@ -47,15 +47,13 @@
                         @foreach ($contacts as $contact)
                             <div>
                                 <label>
-                                    <input type="checkbox" name="contacts[]" value="{{$contact['email']}}" class="py-1 px-3 bg-gray-50 rounded border-0"/>
-                                    <span>{{$contact['name']}}</span>
+                                    <input type="checkbox" name="contacts[]" value="{{$contact['email']}}" class="p-2 bg-gray-100 rounded border-0"/>
+                                    <span class="text-gray-700">{{$contact['name']}}</span>
                                 </label>
                                 </div>
                         @endforeach
                     </div>
                      
-
-
                     @error('contacts')
                         <div class="text-sm text-red-500">{{ $message }}</div>
                     @enderror

@@ -22,6 +22,12 @@ class MessageController extends Controller
         return substr(str_shuffle($str_result), 0, 15);
     }
 
+    public function getContacts() {
+        $res = Http::get('https://pastebin.com/raw/uDzdKzGG');
+        $contacts = $res->json();
+        return $contacts;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -44,11 +50,10 @@ class MessageController extends Controller
     public function create()
     {
 
-        $res = Http::get('https://pastebin.com/raw/uDzdKzGG');
-        $contacts = $res->json();
+      
 
         return view('messages.create', [
-            'contacts'=> $contacts
+            'contacts'=>$this->getContacts()
         ]); 
     }
 
@@ -61,24 +66,16 @@ class MessageController extends Controller
     public function store(MessageCreateRequest $request)
     {
         $user = Auth::user();
-
        
-
-      
         $user->messages()->create([
             'name' => $request->name,
             'slug' =>  $this->random_slug(),
+            'contacts' => $request->contacts,
             'message' => $request->message,
             'password' => $request->password,
         ]);
 
-
-
         return redirect()->route('messages.index')->withMessage('message', 'Successfully done the operation.');
-
-
-
-
     }
 
     /**
@@ -104,7 +101,8 @@ public function show(Message $message)
     {
 
         return view('messages.edit', [
-            'message' => $message
+            'message' => $message,
+            'contacts'=>$this->getContacts()
         ]); 
     }
 
@@ -118,9 +116,11 @@ public function show(Message $message)
     public function update(MessageEditRequest $request,Message $message)
     {
         // $message = Message::findOrFail($id);
+
         $message->name = $request->name;
         $message->slug = Str::slug($request->name, '-');
         $message->message = $request->message;
+        $message->contacts = $request->contacts;
         $message->password  = $request->password;
         $message->save();
 
