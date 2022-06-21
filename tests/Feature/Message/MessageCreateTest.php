@@ -32,9 +32,27 @@ class MessageCreateTest extends TestCase
             'slug' =>  'dfasdjfgajfgasdjkdsadfjaksdfgjaksldf',
             'contacts' => [],
             'message' => 'this should be encrypted',
-            'password' => 'a passworddd',
+            'password' => 'apassworddd',
         ]);
 
         $response->assertRedirect(route('messages.index'));
     }
+
+    public function test_new_message_cannot_be_created_with_invalid_data()
+    {
+        $user = User::factory()->create();
+        $this->actingAs($user);
+        
+
+        $response = $this->post('/messages', [
+            'name' => 'testmessage',
+            // 'slug' =>  'dfasdjfgajfgasdjkdsadfjaksdfgjaksldf',
+            // 'contacts' => [],
+            'message' => 'this should be encrypted',
+            // 'password' => 'apassworddd',
+        ]);
+
+        $response->assertStatus(302);
+    }
+
 }

@@ -21623,23 +21623,25 @@ __webpack_require__.r(__webpack_exports__);
     var messageId = props.id;
     var errors = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_0__.ref)();
     var showModal = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
+    var modalMessage = (0,_vue_runtime_core__WEBPACK_IMPORTED_MODULE_0__.ref)('');
 
     var resendInvites = function resendInvites() {
+      modalMessage.value = '';
       axios.post("/api/messages/".concat(messageId, "/send-invites"), {
         id: messageId
       }).then(function (res) {
-        console.log(res);
+        modalMessage.value = 'invites send...';
         showModal.value = true;
       })["catch"](function (err) {
-        console.log(err); // const {response} = err;
-        // errors.value = response.data
+        console.log(err);
       });
     };
 
     return {
       resendInvites: resendInvites,
       errors: errors,
-      showModal: showModal
+      showModal: showModal,
+      modalMessage: modalMessage
     };
   }
 });
@@ -21797,13 +21799,9 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_6 = {
   "class": "text-sm"
-}, "dit is een test", -1
-/* HOISTED */
-);
-
-var _hoisted_7 = [_hoisted_6];
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     type: "button",
@@ -21813,7 +21811,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "p-3 font-bold text-white bg-indigo-500 rounded"
   }, "Re-send invites"), _hoisted_5])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([$setup.showModal ? 'opacity-100' : 'opacity-0', 'fixed bottom-0 left-0 p-3 m-6 text-green-500 shadow-lg shadow-green-200/50 bg-green-100 rounded trans w-60'])
-  }, _hoisted_7, 2
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.modalMessage), 1
+  /* TEXT */
+  )], 2
   /* CLASS */
   )]);
 }
@@ -21834,7 +21834,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "relative"
+  "class": "relative z-50"
 };
 var _hoisted_2 = {
   key: 0,

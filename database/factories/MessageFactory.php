@@ -20,9 +20,7 @@ class MessageFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'slug' => Str::random(10),
-            'contacts' => [
-                $this->faker->email()
-            ],
+            'contacts' => null,
             'user_id' => 1,
             'message' => Str::random(100),
             'password' => Str::random(10),

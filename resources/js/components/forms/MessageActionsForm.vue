@@ -15,9 +15,8 @@
             </div>
         </div>
 
-
         <div :class="[showModal ? 'opacity-100' : 'opacity-0', 'fixed bottom-0 left-0 p-3 m-6 text-green-500 shadow-lg shadow-green-200/50 bg-green-100 rounded trans w-60']">
-            <span class="text-sm">dit is een test</span>
+            <span class="text-sm">{{modalMessage}}</span>
         </div>
     </div>
 </template>
@@ -31,25 +30,24 @@ export default {
         const messageId = props.id
         const errors = ref();
         const showModal = ref(false);
+        const modalMessage = ref('');
 
 
         const resendInvites = () => {
+            modalMessage.value = ''
+
              axios.post(`/api/messages/${messageId}/send-invites`, {
                 id: messageId,
             }).then(res => {
-             console.log(res)
+                modalMessage.value = 'invites send...'
             showModal.value = true
             })
             .catch(err => {
                   console.log(err)
-                // const {response} = err;
-                // errors.value = response.data
             })
-
         }
 
-
-        return {resendInvites, errors, showModal}
+        return {resendInvites, errors, showModal, modalMessage}
     }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <div class="relative">
+    <div class="relative z-50">
         <div v-if="locked" class="fixed top-0 left-0 flex w-screen h-screen p-12 bg-black bg-opacity-50">
             <div class="p-12 m-auto bg-white rounded">
                 <h3 class="mb-3 text-2xl font-semibold">This message is locked</h3>
