@@ -9,16 +9,18 @@
 
 ## SMA
 
-This Laravel SMA makes it easy to share secure information with contacts.
+This Laravel SMA makes it easy to share secure information with contacts. Once logged in, users can create messages and secure them with a password. The link of the created message can be shared with contacts. Only users with the correct token and password can access the message.
 
-- [SMA](https://https://sma.jvw.dev/)
+- [Live preview](https://https://sma.jvw.dev/)
 
 
 ### More about me 
 - **[All my links](https://grrp.me/jens)**
 - **[Internetbureau Beter Bekend](https://www.beterbekend.nl)**
-- **[Use my link in bio service](https://grrp.me)**
+- **[Use my free link in bio service, build with Laravel](https://grrp.me)**
 
+
+### Follow me 
 - **[LinkedIn](https://www.linkedin.com/in/jvanwijhe/)**
 - **[Twitter](https://www.twitter.com/jensvanwijhe/)**
 
