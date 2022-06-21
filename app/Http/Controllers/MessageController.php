@@ -89,12 +89,6 @@ class MessageController extends Controller
      */
 public function show(Message $message)
     {
-
-        // dd($message->message);
-
-        // dd(Hash::check('jens', $message->password));
-
-
         return view('messages.show', [
             'message' => $message
         ]); 
