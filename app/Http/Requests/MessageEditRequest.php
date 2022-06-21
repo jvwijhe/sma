@@ -27,7 +27,7 @@ class MessageEditRequest extends FormRequest
             'name' => 'required',
             // 'slug' => 'required',
             'message' => 'required',
-            'password' => 'required',
+            // 'password' => 'required',
         ];
     }
 }

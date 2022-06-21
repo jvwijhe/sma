@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
 
 
@@ -49,9 +51,6 @@ class MessageController extends Controller
      */
     public function create()
     {
-
-      
-
         return view('messages.create', [
             'contacts'=>$this->getContacts()
         ]); 
@@ -71,8 +70,10 @@ class MessageController extends Controller
             'name' => $request->name,
             'slug' =>  $this->random_slug(),
             'contacts' => $request->contacts,
-            'message' => $request->message,
-            'password' => $request->password,
+
+            // encrypt and hash message and password. Difference: we can decrypt the message
+            'message' => Crypt::encryptString($request->message),
+            'password' => Hash::make($request->password),
         ]);
 
         return redirect()->route('messages.index')->withMessage('message', 'Successfully done the operation.');
@@ -86,6 +87,12 @@ class MessageController extends Controller
      */
 public function show(Message $message)
     {
+
+        // dd($message->message);
+
+        // dd(Hash::check('jens', $message->password));
+
+
         return view('messages.show', [
             'message' => $message
         ]); 
@@ -119,9 +126,11 @@ public function show(Message $message)
 
         $message->name = $request->name;
         $message->slug = Str::slug($request->name, '-');
-        $message->message = $request->message;
         $message->contacts = $request->contacts;
-        $message->password  = $request->password;
+        
+        // encrypt and hash message and password. Difference: we can decrypt the message
+        $message->message = Crypt::encryptString($request->message);
+        // $message->password = Hash::make($request->password);
         $message->save();
 
         return Redirect::route('messages.index')->with(['mesage' => 'Message updated'])->withInput();
