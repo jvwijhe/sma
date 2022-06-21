@@ -28,8 +28,6 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-
-
 Route::get('/messages', [MessageController::class, 'index'])->middleware(['auth'])->name('messages.index');
 Route::get('/messages/create', [MessageController::class, 'create'])->middleware(['auth'])->name('messages.create');
 Route::get('/messages/{message}', [MessageController::class, 'show'])->name('messages.show')->middleware('signed');

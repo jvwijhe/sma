@@ -20,12 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
-
+// sanctum middleware needs to be added
 Route::post('/messages/{id}/unlock', [MessageController::class, 'unlock']);
 
-
+// sanctum middleware needs to be added
 Route::post('/messages/{id}/send-invites', [MessageController::class, 'sendInvites']);
