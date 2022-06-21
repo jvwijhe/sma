@@ -6,3 +6,7 @@
 p {
     @apply mb-3
 }
+
+.trans {
+        @apply relative transition-all duration-300 ease-in-out origin-center transform;
+    }

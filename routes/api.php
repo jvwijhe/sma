@@ -26,3 +26,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/messages/{id}/unlock', [MessageController::class, 'unlock']);
+
+
+Route::post('/messages/{id}/send-invites', [MessageController::class, 'sendInvites']);

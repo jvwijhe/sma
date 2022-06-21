@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MessageUnlockRequest;
+use App\Jobs\Messages\SendInvitesJob;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -21,5 +22,20 @@ class MessageController extends Controller
             'message' => $decryptedMessage
         ]);
     }
+
+    public function sendInvites(Request $request, $id)
+    {
+        $message = Message::findOrFail($id);
+
+
+        // Dispatch job which sends the invits
+        SendInvitesJob::dispatch($message);
+
+
+        return response()->json([
+            'message' => 'invites send'
+        ]);
+    }
+
 
 }
